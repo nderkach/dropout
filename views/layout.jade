@@ -1,0 +1,31 @@
+doctype html
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='stylesheet', href='/bootstrap/dist/css/bootstrap.min.css')
+    link(rel='stylesheet', href='/ladda/dist/ladda-themeless.min.css')
+    script(src='/ladda/dist/spin.min.js')
+    script(src='/ladda/dist/ladda.min.js')
+    script(src='http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js')
+    script(src='/bootstrap/dist/js/bootstrap.min.js')
+    //script(src='/popcorn/lib/popcorn.js')
+    //script(src='/javascripts/popcorn.capture.js')
+    script.
+      Ladda.bind('input[type=submit]');
+      $(function() {
+        $('#form-submit').click(function(e) {
+          e.preventDefault();
+          var l = Ladda.create(this);
+          l.start();
+          $.get("/search?q=" + $('#search-field').val(), function(response) {
+            console.log(response);
+            $("#search-results").empty()
+            $("#search-results").append(response)
+            l.stop();
+          });
+          return false;
+        });
+      });
+  body
+    block content

@@ -1,17 +1,43 @@
 {
   "name": "dropout",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node app.js"
+  },
+  "engines": {
+    "node": "0.10.x"
   },
   "dependencies": {
     "body-parser": "~1.10.2",
+    "bootstrap": "^3.3.2",
+    "cheerio": "^0.18.0",
     "cookie-parser": "~1.3.3",
     "debug": "~2.1.1",
     "express": "~4.11.1",
     "jade": "~1.9.1",
+    "ladda": "^0.9.7",
     "morgan": "~1.5.1",
+    "request": "^2.51.0",
     "serve-favicon": "~2.2.0"
-  }
+  },
+  "description": "dropout.io",
+  "main": "app.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nderkach/dropout.git"
+  },
+  "keywords": [
+    "itunes",
+    "itunesu",
+    "video",
+    "videos"
+  ],
+  "author": "Nikolay Derkach",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nderkach/dropout/issues"
+  },
+  "homepage": "https://github.com/nderkach/dropout"
 }

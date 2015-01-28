@@ -19,7 +19,8 @@
     "ladda": "^0.9.7",
     "morgan": "~1.5.1",
     "request": "^2.51.0",
-    "serve-favicon": "~2.2.0"
+    "serve-favicon": "~2.2.0",
+    "video.js": "^4.11.4"
   },
   "description": "dropout.io",
   "main": "app.js",

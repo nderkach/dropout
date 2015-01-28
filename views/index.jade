@@ -8,3 +8,14 @@ block content
         button(class='btn btn-primary ladda-button', id='form-submit', data-style='expand-right')
           span(class='ladda-label') Search
   div(class='col-lg-12' id='search-results')
+  script.
+    $(function() {
+      $("#search-field").keypress(function (e) {
+          if ((e.which && e.which == 13) || (e.keyCode && e.keyCode == 13)) {
+              $('#form-submit').click();
+              return false;
+          } else {
+              return true;
+          }
+      });
+    });

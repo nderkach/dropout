@@ -1,8 +1,12 @@
+link(rel="stylesheet", href="/video.js/dist/video-js/video-js.css")
 div(class='container top-buffer')
   div(class='row')
     each url, title in result
       div(class='col-lg-3 col-md-4 col-xs-6 thumb')
         a(class='thumbnail', class='embed-responsive embed-responsive-16by9')
-          video(controls="controls", id=val, class='embed-responsive-item')
+          video(controls, id=val, class='video-js vjs-default-skin embed-responsive-item', preload="auto", data-setup='{}', width='auto', height='auto')
             source(src=url, type="video/mp4")
         p=title
+script(src="/video.js/dist/video-js/video.js")
+script.
+

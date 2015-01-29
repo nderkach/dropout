@@ -1,13 +1,13 @@
 doctype html
 html
   head
-    title= title
+    title dropout.io
     link(rel='stylesheet', href='/stylesheets/style.css')
     link(rel='stylesheet', href='/bootstrap/dist/css/bootstrap.min.css')
     link(rel='stylesheet', href='/ladda/dist/ladda-themeless.min.css')
     script(src='/ladda/dist/spin.min.js')
     script(src='/ladda/dist/ladda.min.js')
-    script(src='http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js')
+    script(src='/jquery/dist/jquery.min.js')
     script(src='/bootstrap/dist/js/bootstrap.min.js')
     script.
       Ladda.bind('input[type=submit]');
@@ -17,7 +17,7 @@ html
           var l = Ladda.create(this);
           l.start();
           $.get("/search?q=" + $('#search-field').val(), function(response) {
-            console.log(response);
+            //- console.log(response);
             $("#search-results").empty()
             $("#search-results").append(response)
             l.stop();
@@ -26,4 +26,14 @@ html
         });
       });
   body
+    nav(class="navbar navbar-default")
+      div(class="container-fluid")
+        div(class="navbar-header")
+          a(class="navbar-brand" href="#") dropout.io
+          p(class="navbar-text") Watch iTunes U videos without iTunes
+          //- p(class="navbar-text navbar-right")
+          //-   iframe(src="https://ghbtns.com/github-btn.html?user=nderkach&repo=dropout&type=star&count=true" frameborder="0" scrolling="0" width="170px" height="20px")
     block content
+    //- footer(class="footer")
+    //-   div(class="container")
+    //-     p(class="text-muted") Place sticky footer content here.

@@ -1,21 +1,22 @@
 extends layout
 
 block content
-  div(class='col-lg-6 col-lg-offset-3')
-    div(class='input-group')
-      input(type='text', class='form-control', id='search-field', placeholder='What are you looking for?')
-      div(class='input-group-btn')
-        button(class='btn btn-primary ladda-button', id='form-submit', data-style='expand-right')
-          span(class='ladda-label') Search
-  div(class='col-lg-12' id='search-results')
-  script.
-    $(function() {
-      $("#search-field").keypress(function (e) {
-          if ((e.which && e.which == 13) || (e.keyCode && e.keyCode == 13)) {
-              $('#form-submit').click();
-              return false;
-          } else {
-              return true;
-          }
+  div(class="container")
+    div(class='col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3 col-xs-10 col-xs-offset-1')
+      div(class='input-group input-group-lg')
+        input(type='text', class='form-control', id='search-field', placeholder='What are you looking for?')
+        div(class='input-group-btn')
+          button(class='btn btn-primary ladda-button', id='form-submit', data-style='expand-right')
+            span(class='ladda-label') Search
+    div(class='col-lg-12 col-md-12 col-sm-12 col-xs-12 top-buffer' id='search-results')
+    script.
+      $(function() {
+        $("#search-field").keypress(function (e) {
+            if ((e.which && e.which == 13) || (e.keyCode && e.keyCode == 13)) {
+                $('#form-submit').click();
+                return false;
+            } else {
+                return true;
+            }
+        });
       });
-    });

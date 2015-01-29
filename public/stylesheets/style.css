@@ -1,6 +1,6 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  /*padding: 50px;*/
+  /*font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;*/
 }
 
 a {
@@ -9,4 +9,21 @@ a {
 
 .top-buffer {
     margin-top:40px;
+}
+
+/*div.caption { min-height:150px; height:150px; }*/
+
+footer {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  vertical-align: middle;
+  /*width: 50%;*/
+  /*float: right;*/
+  text-align: right;
+  background-color: #CACACA;
+  color: #fff;
+  padding: 0.5em;
+  font-weight: 500;
+  z-index: 4;
 }

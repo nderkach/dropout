@@ -6,7 +6,7 @@ div(class='container')
       div(class='col-lg-3 col-md-4 col-sm-6 col-xs-12')
         div(class='thumbnail')
           div(class="embed-responsive embed-responsive-16by9")
-            video(controls, id=val, class='video-js vjs-default-skin embed-responsive-item', preload="auto", data-setup='{}', width='auto', height='auto')
+            video(controls, id=val, class='video-js vjs-default-skin embed-responsive-item', preload="metadata", data-setup='{}', width='auto', height='auto')
               source(src=url, type="video/mp4")
           div(class="caption")
             h5=meta.title

@@ -1,7 +1,7 @@
 doctype html
 html
   head
-    title dropout.io
+    title iTunes on Rocks
     link(rel='stylesheet', href='/stylesheets/style.css')
     link(rel='stylesheet', href='/bootstrap/dist/css/bootstrap.min.css')
     link(rel='stylesheet', href='/ladda/dist/ladda-themeless.min.css')
@@ -16,10 +16,10 @@ html
           e.preventDefault();
           var l = Ladda.create(this);
           l.start();
-          $.get("/search?q=" + $('#search-field').val(), function(response) {
-            //- console.log(response);
+          $.get("/results?q=" + $('#search-field').val(), function(response) {
             $("#search-results").empty()
             $("#search-results").append(response)
+            window.history.pushState("", "", "/search?q="+$('#search-field').val());
             l.stop();
           });
           return false;
@@ -29,7 +29,7 @@ html
     nav(class="navbar navbar-default")
       div(class="container-fluid")
         div(class="navbar-header")
-          a(class="navbar-brand" href="#") dropout.io
+          a(class="navbar-brand" href="#") ITunes on Rocks
           p(class="navbar-text") Watch iTunes U videos without iTunes
           //- p(class="navbar-text navbar-right")
           //-   iframe(src="https://ghbtns.com/github-btn.html?user=nderkach&repo=dropout&type=star&count=true" frameborder="0" scrolling="0" width="170px" height="20px")

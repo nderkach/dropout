@@ -8,14 +8,11 @@ var http = require('http');
 
 var search_url = 'http://ax.search.itunes.apple.com/WebObjects/MZSearch.woa/wa/search?submit=media&restrict=true&term=%s&media=iTunesU'
 
-/* GET home page. */
 router.get('/', function(req, res, next) {
 	res.render('index', {});
 });
 
-router.get('/search', function(req, res, next) {
-
-	console.log('Search: ' + req.query.q)
+router.get('/results', function(req, res, next) {
 
 	var options = {
 		url: util.format(search_url, req.query.q),
@@ -26,7 +23,6 @@ router.get('/search', function(req, res, next) {
 
 	function callback(error, response, body) {
 		if (!error && response.statusCode == 200) {
-            console.log("Search finished")
 			$ = cheerio.load(body);
 			var videos = {};
 			$('.podcast-episode.video').each(function(index) {
@@ -43,16 +39,26 @@ router.get('/search', function(req, res, next) {
 	}
 
 	request(options, callback);
+});
 
-    // FIXME: TMP
-    var videos = {
-"http://a1186.phobos.apple.com/us/r30/CobaltPublic/v4/0f/50/70/0f5070a5-fde2-3c8c-284f-4359653c3a7d/314-4479340777203542856-19_iOS_Ipad_Final_720p800cc3.mp4": {"title": "1. Mog2hhhhhhhh hhhhhhhhhhhhhhhhhhhhhhh hhhhhhhhhhhhhhhhhhhhh hhhhhhhhhhhhhhhh hhhhhhhhh011)", "album": "Cool album", "duration": "100", "artist": "Bob Dylan"},
-"http://a584.phobos.apple.com/us/r30/CobaltPublic6/v4/84/91/59/84915956-acae-c94e-865a-18afb74bb030/0c9c45a4b8a1e40d390e38b99bc855f43342b2b196a85ae380c7ddf43dcf921f-11761366205.m4v": {"title": "1. Modal View Controller/Test/Animation/Timer (Novem 15, 2011)", "album": "Cool album", "duration": "100", "artist": "Bob Dylan"},
-"http://a1020.phobos.apple.com/us/r30/CobaltPublic/v4/c9/7a/55/c97a5560-1922-e0a7-ffd7-f70b69e82184/209-536103855-ios_11_nf3.mp4": {"title": "1. Modal View Controller/Test/Animation/Timer (Novem 15, 2011)", "album": "Cool album", "duration": "100", "artist": "Bob Dylan"},
-"http://a1906.phobos.apple.com/us/r30/CobaltPublic4/v4/f2/2a/a7/f22aa700-e671-7344-d61b-3998d002f70e/330-9163309826435989101-safari_browser.mp4": {"title": "1. Modal View Controller/Test/Animation/Timer (Novem 15, 2011)", "album": "Cool album", "duration": "100", "artist": "Bob Dylan"},
-"http://a1969.phobos.apple.com/us/r30/CobaltPublic/v4/2a/55/c7/2a55c746-54ad-132d-bbbb-999c6f6934bb/304-4834227421138469543-11_2_12_13_Tues_720p1000cc.mp4": {"title": "1. Modal View Controller/Test/Animation/Timer (Novem 15, 2011)", "album": "Cool album", "duration": "100", "artist": "Bob Dylan"}
-    };
-    // res.render('search', {'result' : videos});
+router.get('/search', function(req, res, next) {
+
+  var params = req.query.q;
+
+  res.app.render('index', {}, function(err, html) {
+    var html = html;
+    request('http://localhost:'+res.app.get('port')+'/results?q='+params, function (error, response, body) {
+        if (!error && response.statusCode == 200) {
+          var env = require('jsdom').env
+          env(html, function (errors, window) {
+            var $ = require('jquery')(window);
+            $('#search-field').attr("value", params);
+            $("#search-results").append(body);
+            res.send($("html").html());
+          });
+        }
+    });
+  });
 });
 
 module.exports = router;
